@@ -1,0 +1,51 @@
+<div class="container mx-auto">
+  <%= render 'layouts/navbar' %>
+  <h1 class="mb-3 text-center fw-bold">祝福留言列表</h1>
+
+  <div class="d-flex align-items-center">
+    <%= search_form_for @q, class: "flex-grow-1" do |f| %>
+      <div class="input-group my-3">
+        <%= f.label '手機號', class: "input-group-text" %>
+        <%= f.search_field :phone_number, class: "form-control" %>
+        <%= f.label '姓名', class: "input-group-text" %>
+        <%= f.search_field :name, class: "form-control" %>
+        <%= f.label '是否中獎', class: "input-group-text" %>
+        <%= f.select :win_eq, [['中獎', true], ['沒中', false]], { include_blank: ""}, class: "form-select" %>
+        <%= f.submit class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+    <%= link_to '取消搜尋', comments_path, class: "btn btn-outline-secondary mx-2" %>
+  </div>
+
+
+  <table class="table table-hover text-center">
+    <thead>
+      <tr>
+        <th></th>
+        <th>手機</th>
+        <th>姓名</th>
+        <th>祝福留言</th>
+        <th>建立時間</th>
+        <th>是否中獎</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td><%= link_to comment.id, comment_path(username: @user.username, id: comment.id), class: "text-decoration-none text-info fw-bold" %></td>
+          <td><%= comment.phone_number %></td>
+          <td><%= comment.name %></td>
+          <td><%= comment.message %></td>
+          <td><%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+          <td><%= comment.win %></td>
+          <td><%= link_to t("delete"), comment_path(username: @user.username, id: comment.id), method: "delete", data: {confirm: '確定刪除該筆祝福留言?'}, class: "btn btn-outline-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div id="paginate">
+    <%= paginate @comments %>
+  </div>
+</div>

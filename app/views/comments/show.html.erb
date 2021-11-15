@@ -1,0 +1,17 @@
+<div class="container mx-auto">
+
+  <div>您的姓名：</div>
+  <div><%= @comment.name %></div>
+
+  <div>您的祝福：</div>
+  <div class="border border-2 my-3 p-3">
+    <%= simple_format(@comment.message) %>
+  </div>
+
+  <div>
+    <%= link_to '回上頁繼續填寫', new_comment_path(username: @user.username), class: "btn btn-outline-success" %>
+    <% if current_user %>
+      <%= link_to '返回您的祝福列表', comments_path(username: current_user.username), class: "btn btn-outline-danger" %>
+    <% end %>
+  </div>
+</div>

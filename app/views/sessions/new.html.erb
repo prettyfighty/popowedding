@@ -5,7 +5,6 @@
     <%= link_to '登出', sign_out_sessions_path, method: "delete", class: "btn btn-light" %>
   <% end %>
 
-
   <h1 class="mb-3 text-center fw-bold">新人登入</h1>
 
   <%= form_tag sign_in_sessions_path do %>
@@ -16,14 +15,4 @@
     <%= submit_tag "登入"%>
     <%= link_to '註冊', sign_up_users_path, class: "btn btn-outline-secondary mx-3" %>
   <% end %>
-
-  <!-- <%= form_for @user, url: sign_in_sessions_path do |f| %>
-    <%= f.label :username, '帳號' %>
-    <%= f.text_field :username, placeholder: 'Username' %>
-    <%= f.label :password, '密碼' %>
-    <%= f.password_field :password, placeholder: 'Password' %>
-    <%= f.submit '登入'%>
-    <%= link_to '註冊', sign_up_users_path, class: "btn btn-outline-secondary mx-3" %>
-  <% end %> -->
-
 </div>
