@@ -62,6 +62,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.9.1)
       msgpack (~> 1.0)
@@ -81,6 +82,8 @@ GEM
     crass (1.0.6)
     erubi (1.10.0)
     ffi (1.15.4)
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
     globalid (0.5.2)
       activesupport (>= 5.0)
     i18n (1.8.11)
@@ -206,9 +209,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  figaro (~> 1.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   pg (~> 1.1)

@@ -1,2 +1,15 @@
 class ApplicationController < ActionController::Base
+  helper_method :current_user, :user_signed_in?
+
+  def current_user
+    User.find_by(id: session[ENV["session_name"]])
+  end
+
+  def user_signed_in?
+    session[ENV["session_name"]]
+  end
+
+  def authenticate_user!
+    redirect_to sign_in_sessions_path, notice: '請先登入' if session[ENV["session_name"]] == nil
+  end
 end

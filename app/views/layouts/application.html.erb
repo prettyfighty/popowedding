@@ -11,6 +11,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="relative">
+      <div id="notice" class="font-bold text-center">
+        <%= notice %>
+      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>
