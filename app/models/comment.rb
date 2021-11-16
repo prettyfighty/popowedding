@@ -11,7 +11,7 @@ class Comment < ApplicationRecord
     where("#{table_name}.created_at <= ?", Time.zone.parse(end_time))
   }
 
-  validates :phone_number, format: { with: /\A09\d{8}\z/, message: '手機號碼格式錯誤' }
-  validates :name, presence: true, length: { maximum: 20, message: '姓名長度過長'}
+  validates :phone_number, format: { with: /\A09\d{8}\z/, message: '格式錯誤' }
+  validates :name, presence: true, length: { maximum: 20, message: '長度過長'}
   validates :message, presence: true
 end

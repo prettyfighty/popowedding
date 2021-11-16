@@ -1,5 +1,12 @@
 <div class="container mx-auto blessing-container blessing-new board_color_2 message_board_type_0">
   <div class="container-background background-color-1">
+    <% if @comment.errors.any? %>
+      <ul>
+        <% @comment.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
     <div class="blessing-title border-color-2">
       <div class="title-image"><img class="border-color-2" src=""></div>
       <h3>歡迎參加 <span><%= "#{@user&.bride}＆#{@user.bridegroom}" %></span> 的婚禮，快來寫下您想對我們說的話吧！</h3>
