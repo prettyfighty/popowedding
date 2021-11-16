@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-    redirect_to comments_path(current_user.username)if current_user
+    redirect_to comments_path(current_user.username) if current_user
   end
 
   def create

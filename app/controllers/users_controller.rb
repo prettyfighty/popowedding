@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  http_basic_authenticate_with name: ENV["basic_authenticate_name"], password: ENV["basic_authenticate_password"]
+  http_basic_authenticate_with name: ENV['basic_authenticate_name'], password: ENV['basic_authenticate_password']
 
   def new
     @user = User.new
