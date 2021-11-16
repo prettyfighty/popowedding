@@ -43,7 +43,7 @@
       </tr>
     </thead>
     <tbody>
-      <% if @winner && @messages %>
+      <% if @winner && @messages && @comment_ids %>
         <tr>
           <td><%= @winner[0] %></td>
           <td><%= @winner[1] %></td>

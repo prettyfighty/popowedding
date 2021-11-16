@@ -47,11 +47,13 @@ class CommentsController < ApplicationController
 
     if params[:datetime_filter]
       win_number = @comments.pluck(:phone_number).uniq.sample
-      win_name = @comments.where(phone_number: win_number).pluck(:name).uniq.join(',')
-      @messages = @comments.where(phone_number: win_number).pluck(:message).join(',')
-      @comment_ids = @comments.where(phone_number: win_number).ids
-      win_number[4..6] = '***'
-      @winner = [win_number, win_name]
+      if win_number.present?
+        win_name = @comments.where(phone_number: win_number).pluck(:name).uniq.join(',')
+        @messages = @comments.where(phone_number: win_number).pluck(:message).join(',')
+        @comment_ids = @comments.where(phone_number: win_number).ids
+        win_number[4..6] = '***'
+        @winner = [win_number, win_name]
+      end
     end
   end
 
