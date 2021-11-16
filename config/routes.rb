@@ -7,7 +7,12 @@ Rails.application.routes.draw do
       post :sign_up, action: 'create'
     end
     member do
-      resources :comments, path: 'blessings', except: %i[edit update]
+      resources :comments, path: 'blessings', except: %i[edit update] do
+        collection do
+          get :lottery
+          post :update_winner
+        end
+      end
     end
   end
 
