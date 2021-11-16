@@ -2,9 +2,21 @@
 
   <h1 class="mb-3 text-center fw-bold">新人註冊</h1>
 
+  <% if @user.errors.any? %>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <div class="d-flex justify-content-center align-items-center">
     <div class="user-form-container mt-5 border border-dark p-5">
       <%= form_for @user, url: sign_up_users_path do |f| %>
+        <%= f.label :bride, '新娘' %>
+        <%= f.text_field :bride, placeholder: '小白' %>
+        <%= f.label :bridegroom, '新郎' %>
+        <%= f.text_field :bridegroom, placeholder: '蠟筆小新' %>
         <%= f.label :username, '帳號' %>
         <%= f.text_field :username, placeholder: 'Username' %>
         <%= f.label :password, '密碼' %>

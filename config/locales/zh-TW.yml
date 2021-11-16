@@ -1,0 +1,47 @@
+zh-TW:
+  view:
+    common:
+      true: 是
+      false: 否
+
+
+
+  activerecord:
+    models:
+      user:
+        one: 新人
+        other: 新人
+      comment:
+        one: 祝福
+        other: 祝福
+    attributes:
+      user:
+        bride: 新娘
+        bridegroom: 新郎
+        username: 帳號
+        password: 密碼
+      comment:
+        phone_number: 手機號碼
+        name: 姓名
+        message: 祝福留言
+
+    errors:
+      models:
+        user:
+          attributes:
+            bride:
+              blank: 不可空白
+            bridegroom:
+              blank: 不可空白
+            username:
+              blank: 不可空白
+              too_short: 長度不足
+            password:
+              blank: 不可空白
+        comment:
+          attributes:
+            name:
+              blank: 不可空白
+            message:
+              blank: 不可空白
+

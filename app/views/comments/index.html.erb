@@ -1,16 +1,21 @@
 <div class="container mx-auto">
   <%= render 'layouts/navbar' %>
   <h1 class="mb-3 text-center fw-bold">祝福留言列表</h1>
+  <%= link_to '新增祝福', new_comment_path(username: @user.username) %>
 
   <div class="d-flex align-items-center">
     <%= search_form_for @q, class: "flex-grow-1" do |f| %>
       <div class="input-group my-3">
-        <%= f.label '手機號', class: "input-group-text" %>
-        <%= f.search_field :phone_number, class: "form-control" %>
-        <%= f.label '姓名', class: "input-group-text" %>
-        <%= f.search_field :name, class: "form-control" %>
-        <%= f.label '是否中獎', class: "input-group-text" %>
-        <%= f.select :win_eq, [['中獎', true], ['沒中', false]], { include_blank: ""}, class: "form-select" %>
+        <%= f.label :phone_number_cont, '手機號', class: "input-group-text" %>
+        <%= f.search_field :phone_number_cont, class: "form-control" %>
+        <%= f.label :name_cont, '姓名', class: "input-group-text" %>
+        <%= f.search_field :name_cont, class: "form-control" %>
+        <%= f.label :created_at_gteq, 'After' %>
+        <%= f.text_field :created_at_gteq %>
+        <%= f.label :created_at_lteq, 'Before' %>
+        <%= f.text_field :created_at_lteq %>
+        <%= f.label :win_eq, '是否中獎', class: "input-group-text" %>
+        <%= f.select :win_eq, [['是', true], ['否 ', false]], { include_blank: ""}, class: "form-select" %>
         <%= f.submit class: "btn btn-secondary" %>
       </div>
     <% end %>
@@ -21,7 +26,7 @@
   <table class="table table-hover text-center">
     <thead>
       <tr>
-        <th></th>
+        <th>編號</th>
         <th>手機</th>
         <th>姓名</th>
         <th>祝福留言</th>
@@ -38,8 +43,8 @@
           <td><%= comment.name %></td>
           <td><%= comment.message %></td>
           <td><%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-          <td><%= comment.win %></td>
-          <td><%= link_to t("delete"), comment_path(username: @user.username, id: comment.id), method: "delete", data: {confirm: '確定刪除該筆祝福留言?'}, class: "btn btn-outline-danger" %></td>
+          <td><%= t("view.common.#{comment.win}") %></td>
+          <td><%= link_to '刪除', comment_path(username: @user.username, id: comment.id), method: "delete", data: {confirm: '確定刪除該筆祝福留言?'}, class: "btn btn-outline-danger" %></td>
         </tr>
       <% end %>
     </tbody>
