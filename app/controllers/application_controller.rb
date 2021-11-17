@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
   def authorize_user!
     redirect_to comments_path(current_user.username), notice: '您並無權限' if @user != current_user
   end
+
+  def set_user
+    @user = User.find_by!(username: params[:username])
+  end
 end

@@ -1,5 +1,7 @@
 <div class="container mx-auto">
 
+  <div><%= image_tag(@user.picture, width: 300) if @user.picture.attached? %></div>
+
   <div>您的手機號：</div>
   <div><%= @comment.phone_number %></div>
 
@@ -10,6 +12,9 @@
   <div class="border border-2 my-3 p-3">
     <%= simple_format(@comment.message) %>
   </div>
+
+  <div>您上傳的照片</div>
+  <div><%= image_tag(@comment.picture, width: 200) if @comment.picture.attached? %></div>
 
   <div>
     <%= link_to '回上頁繼續填寫', new_comment_path(username: @user.username), class: "btn btn-outline-success" %>

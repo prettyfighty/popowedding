@@ -9,6 +9,9 @@
     <% end %>
     <div class="blessing-title border-color-2">
       <div class="title-image"><img class="border-color-2" src=""></div>
+
+      <div><%= image_tag(@user.picture, width: 300) if @user.picture.attached? %></div>
+
       <h3>歡迎參加 <span><%= "#{@user&.bride}＆#{@user.bridegroom}" %></span> 的婚禮，快來寫下您想對我們說的話吧！</h3>
       <p>請在下方填上您的手機、姓名以及想要祝福的話，我們稍後會進行抽獎哦～</p>
     </div>
@@ -25,6 +28,10 @@
       <div class="form-group">
         <%= f.label :message, '祝福內容：' %>
         <%= f.text_area :message, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :picture, '可上傳現場照片，(如果沒有照片也可以直接送出)。' %>
+        <%= f.file_field :picture, class: 'form-control' %>
       </div>
       <div class="form-group">
         <%= f.submit '送出祝福', class: 'btn' %>

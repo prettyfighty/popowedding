@@ -4,7 +4,8 @@
       <span id="helloUser" class="btn text-secondary fw-bold">
         <%= "Hello, #{current_user.bride}, #{current_user.bridegroom}" %>
       </span>
-      <%= link_to '祝福列表', comments_path, class:"btn btn-light" %>
+      <%= link_to '編輯新人資料', edit_user_path(current_user.username), class:"btn btn-light" %>
+      <%= link_to '祝福列表', comments_path(current_user.username), class:"btn btn-light" %>
       <%= link_to '登出', sign_out_sessions_path,method: "delete", class: "btn btn-light" %>
     <% end %>
   </div>

@@ -46,6 +46,7 @@
         <th>手機</th>
         <th>姓名</th>
         <th>祝福留言</th>
+        <th>照片</th>
         <th>建立時間</th>
         <th>是否中獎</th>
         <th>操作</th>
@@ -58,6 +59,7 @@
           <td id="commentPhoneNumber"><%= comment.phone_number %></td>
           <td><%= comment.name %></td>
           <td><%= comment.message %></td>
+          <td><%= image_tag(comment.picture, width: 100) if comment.picture.attached? %></td>
           <td><%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
           <td><%= t("view.common.#{comment.win}") %></td>
           <td><%= link_to '刪除', comment_path(username: @user.username, id: comment.id), method: 'delete', data: { confirm: '確定刪除該筆祝福留言?' }, class: "btn btn-outline-danger" %></td>

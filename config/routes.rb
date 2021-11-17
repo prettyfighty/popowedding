@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'comments#index'
-  resources :users, path: '', param: :username, only: %i[update] do
+  resources :users, path: '', param: :username, only: %i[edit update] do
     collection do
       get :sign_up, action: 'new'
       post :sign_up, action: 'create'

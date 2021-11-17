@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
 
   def index
     set_default_time_interval(1)
-    @comments = current_user.comments
+    @comments = current_user.comments.includes(picture_attachment: :blob)
     @comments = query_by_filter_scope(@comments, filtering_params, :created_at, @default_time_interval)
     @comments = @comments.page(params[:page]).per(25)
   end
@@ -65,14 +65,10 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:phone_number, :name, :message)
+    params.require(:comment).permit(:phone_number, :name, :message, :picture)
   end
 
   def filtering_params
     params.slice(:phone_number, :name, :win, :datetime_filter)
-  end
-
-  def set_user
-    @user = User.find_by!(username: params[:username])
   end
 end
