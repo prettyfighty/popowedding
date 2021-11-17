@@ -56,7 +56,7 @@
       <% @comments.each do |comment| %>
         <tr>
           <td><%= link_to comment.id, comment_path(username: @user.username, id: comment.id), class: "text-decoration-none text-info fw-bold" %></td>
-          <td id="commentPhoneNumber"><%= comment.phone_number %></td>
+          <td><%= comment.mask(comment.phone_number) %></td>
           <td><%= comment.name %></td>
           <td><%= comment.message %></td>
           <td><%= image_tag(comment.picture, width: 100) if comment.picture.attached? %></td>

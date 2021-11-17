@@ -11,6 +11,7 @@
   <% end %>
 
   <div class="d-flex justify-content-center align-items-center">
+    <%= image_tag(@user.picture, width: 300) if @user.picture.attached? %>
     <div class="user-form-container mt-5 border border-dark p-5">
       <%= form_for @user, url: user_path(@user.username) do |f| %>
         <%= f.label :picture, '留言顯示照片' %>

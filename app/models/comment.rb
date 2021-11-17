@@ -19,4 +19,10 @@ class Comment < ApplicationRecord
   validates :phone_number, format: { with: /\A09\d{8}\z/, message: '格式錯誤' }
   validates :name, presence: true, length: { maximum: 20, message: '長度過長'}
   validates :message, presence: true
+
+  def mask(phone_number)
+    masked = self.phone_number
+    masked[4..6] = '***'
+    masked
+  end
 end
