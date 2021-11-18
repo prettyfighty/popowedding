@@ -24,15 +24,16 @@ zh-TW:
         phone_number: 手機號碼
         name: 姓名
         message: 祝福留言
+        picture: 照片
 
     errors:
       models:
         user:
           attributes:
             bride:
-              blank: 不可空白
+              blank: 是誰
             bridegroom:
-              blank: 不可空白
+              blank: 是誰
             username:
               blank: 不可空白
               too_short: 長度不足
@@ -41,7 +42,10 @@ zh-TW:
         comment:
           attributes:
             name:
-              blank: 不可空白
+              blank: 一定要有
             message:
-              blank: 不可空白
+              blank: 加減留個嘛
+            picture:
+              blank: 不能沒有
+              content_type_invalid: 檔案格式錯誤，只能上傳 png, jpg, jpeg
 

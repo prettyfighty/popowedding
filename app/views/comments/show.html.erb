@@ -14,7 +14,7 @@
   </div>
 
   <div>您上傳的照片</div>
-  <div><%= image_tag(@comment.picture, width: 200) if @comment.picture.attached? %></div>
+  <div><%= image_tag(@comment.picture, width: 300) if @comment.picture.attached? %></div>
 
   <div>
     <%= link_to '回上頁繼續填寫', new_comment_path(username: @user.username), class: "btn btn-outline-success" %>

@@ -2,7 +2,6 @@ class Comment < ApplicationRecord
   has_one_attached :picture, dependent: :destroy
   belongs_to :user
 
-  scope :includes_picture, -> { includes(picture_attachment: :blob)}
   scope :with_picture, -> {
     left_joins(:picture_attachment).where.not(active_storage_attachments: {id: nil})
   }
@@ -16,6 +15,8 @@ class Comment < ApplicationRecord
     where("#{table_name}.created_at <= ?", Time.zone.parse(end_time))
   }
 
+  validates :picture, attached: true, size: { less_than: 3.megabytes, message: '檔案大小不得超過3MB' },
+            content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp']
   validates :phone_number, format: { with: /\A09\d{8}\z/, message: '格式錯誤' }
   validates :name, presence: true, length: { maximum: 20, message: '長度過長'}
   validates :message, presence: true

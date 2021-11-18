@@ -58,3 +58,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'figaro', '~> 1.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'google-cloud-storage', '~> 1.34', '>= 1.34.1'
+gem 'active_storage_validations', '~> 0.9.5'
