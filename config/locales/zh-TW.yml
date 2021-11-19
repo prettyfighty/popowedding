@@ -20,6 +20,7 @@ zh-TW:
         bridegroom: 新郎
         username: 帳號
         password: 密碼
+        password_confirmation: 確認密碼
       comment:
         phone_number: 手機號碼
         name: 姓名
@@ -39,6 +40,9 @@ zh-TW:
               too_short: 長度不足
             password:
               blank: 不可空白
+            password_confirmation:
+              confirmation: 與密碼不同
+
         comment:
           attributes:
             name:

@@ -1,0 +1,18 @@
+abbr[title="required"] {
+  color: #f00;
+  text-decoration: none !important;
+}
+
+.error {
+  color: #f00;
+  font-weight: bolder;
+}
+
+.field_with_errors > input, .field_with_errors > textarea {
+  outline: 1px solid #f00;
+}
+
+.field_with_errors > label {
+  color: #f00;
+  font-weight: bolder;
+}
