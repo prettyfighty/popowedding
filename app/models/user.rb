@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_secure_password
   has_one_attached :picture, dependent: :destroy
   has_many :comments
+  before_save :set_filename
 
   scope :with_picture, -> {
     left_joins(:picture_attachment).where.not(active_storage_attachments: {id: nil})
@@ -13,4 +14,15 @@ class User < ApplicationRecord
                        length: { in: 4..20, message: '長度為4-20位' },
                        format: { with: /\w+/, message: '僅可輸入英文、數字及下底線' }
   validates :password, presence: true, on: :create
+
+  private
+
+  def set_filename
+    return unless self.picture.attached?
+    original_filename = self.picture.filename
+    original_key = self.picture.key
+    self.picture.update(
+      filename: "#{self.username}/pictures/#{original_filename}",
+      key: "#{self.username}/pictures/#{original_key}")
+  end
 end

@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
   has_one_attached :picture, dependent: :destroy
   belongs_to :user
+  after_create :set_filename
 
   scope :with_picture, -> {
     left_joins(:picture_attachment).where.not(active_storage_attachments: {id: nil})
@@ -25,5 +26,16 @@ class Comment < ApplicationRecord
     masked = self.phone_number
     masked[4..6] = '***'
     masked
+  end
+
+  private
+
+  def set_filename
+    return unless self.picture.attached?
+    original_filename = self.picture.filename
+    original_key = self.picture.key
+    self.picture.update(
+      filename: "#{self.user.username}/blessings/#{self.phone_number}/#{original_filename}",
+      key: "#{self.user.username}/blessings/#{self.phone_number}/#{original_key}")
   end
 end
