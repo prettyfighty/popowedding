@@ -37,7 +37,7 @@ zh-TW:
               blank: 是誰
             username:
               blank: 不可空白
-              too_short: 長度不足
+              too_short: 長度為4-20位
             password:
               blank: 不可空白
             password_confirmation:

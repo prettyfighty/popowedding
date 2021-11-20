@@ -1,12 +1,14 @@
-<nav id="navBar" class="d-flex container justify-content-between my-3">
-  <div>
-    <% if user_signed_in? %>
-      <span id="helloUser" class="btn text-secondary fw-bold">
-        <%= "Hello, #{current_user.bride}, #{current_user.bridegroom}" %>
-      </span>
-      <%= link_to '編輯新人資料', edit_user_path(current_user.username), class:"btn btn-light" %>
-      <%= link_to '祝福列表', comments_path(current_user.username), class:"btn btn-light" %>
-      <%= link_to '登出', sign_out_sessions_path,method: "delete", class: "btn btn-light" %>
-    <% end %>
+<nav class="container mx-auto flex justify-center flex-wrap md:flex-nowrap ">
+  <% if user_signed_in? %>
+  <div class="mb-4 md:mb-0">
+    <span class="font-medium text-xl">
+      <%= "Hello, #{current_user.bride} & #{current_user.bridegroom}" %>
+    </span>
   </div>
+  <div>
+      <%= link_to '編輯新人資料', edit_user_path(current_user.username), class:"mx-3 p-2 border border-gray-400 text-gray-700" %>
+      <%= link_to '祝福列表', comments_path(current_user.username), class:"mx-3 p-2 border border-gray-400 text-gray-700" %>
+      <%= link_to '登出', sign_out_sessions_path,method: "delete", class: "mx-3 p-2 border border-gray-400 text-gray-700" %>
+  </div>
+  <% end %>
 </nav>

@@ -2,7 +2,7 @@
   <div class="flex-wrap mt-16 mx-8"></div>
     <h1 class="my-16 text-center text-3xl font-black text-gray-500">新人登入</h1>
     <div class="">
-      <%= form_tag sign_in_sessions_path, class: 'w-max mx-auto' do %>
+      <%= form_tag sign_in_sessions_path, class: 'max-w-md mx-8 lg:mx-auto' do %>
         <div class="form-group text-xl mb-5">
           <div><%= label_tag :username, "帳號：", class: 'w-max' %></div>
           <div><%= text_field_tag :username, nil, placeholder: "username", class: 'border-2 p-2 w-full' %></div>
