@@ -1,4 +1,4 @@
-<nav class="container mx-auto flex justify-center flex-wrap md:flex-nowrap ">
+<nav class="container mx-auto flex justify-center flex-wrap md:flex-nowrap">
   <% if user_signed_in? %>
   <div class="mb-4 md:mb-0">
     <span class="font-medium text-xl">
@@ -6,9 +6,9 @@
     </span>
   </div>
   <div>
-      <%= link_to '編輯新人資料', edit_user_path(current_user.username), class:"mx-3 p-2 border border-gray-400 text-gray-700" %>
-      <%= link_to '祝福列表', comments_path(current_user.username), class:"mx-3 p-2 border border-gray-400 text-gray-700" %>
-      <%= link_to '登出', sign_out_sessions_path,method: "delete", class: "mx-3 p-2 border border-gray-400 text-gray-700" %>
+      <%= link_to '編輯新人資料', edit_user_path(current_user.username), class:"mx-3 p-2 border border-gray-400 text-gray-700 rounded-lg" %>
+      <%= link_to '祝福列表', comments_path(current_user.username), class:"mx-3 p-2 border border-gray-400 text-gray-700 rounded-lg" %>
+      <%= link_to '登出', sign_out_sessions_path,method: "delete", class: "mx-3 p-2 border border-gray-400 text-gray-700 rounded-lg" %>
   </div>
   <% end %>
 </nav>

@@ -17,39 +17,37 @@
       <div class="max-w-md mx-auto mb-5">
         <%= image_tag(@user.picture, class: 'w-full') if @user.picture.attached? %>
       </div>
-      <div class="max-w-md mx-auto mb-5">
-        <h3 class="mb-2">
-          歡迎參加 <span><%= "#{@user&.bride}＆#{@user.bridegroom}" %></span> 的婚禮，
-          <br>
-          快來寫下您想對我們說的話吧！
+      <div class="max-w-md mx-auto mb-5 text-center text-gray-600">
+        <h3 class="mb-2 text-lg font-semibold">
+          歡迎參加 <span class="text-xl font-semibold"><%= "#{@user&.bride}＆#{@user.bridegroom}" %></span> 的婚禮，快來寫下您想對我們說的話吧！
         </h3>
-        <p>
-          請在下方填上您的手機、姓名以及祝福，
-          <br>
-          我們稍後會進行抽獎哦～
+        <p class="text-base">
+          請在下方填上您的手機、姓名以及想要祝福的話，我們稍後會進行抽獎哦～
         </p>
       </div>
-      <%= form_for @comment, html: { class: 'max-w-md mx-auto' } do |f| %>
-        <div class="form-group text-xl mb-5">
-          <%= f.label :phone_number, '手機號碼：', class: 'w-max text-base' %>
-          <%= f.text_field :phone_number, placeholder: 'ex: 0952013149', class: 'border-2 p-2 w-full' %>
-        </div>
-        <div class="form-group text-xl mb-5">
-          <%= f.label :name, '姓名：', class: 'w-max text-base' %>
-          <%= f.text_field :name, placeholder: 'ex: 蠟筆小新', class: 'border-2 p-2 w-full' %>
-        </div>
-        <div class="form-group text-xl mb-5">
-          <%= f.label :message, '祝福內容：', class: 'w-max text-base' %>
-          <%= f.text_area :message, class: 'border-2 p-2 w-full' %>
-        </div>
-        <div class="form-group text-xl mb-5">
-          <%= f.label :picture, '上傳現場照片(檔案大小3MB以內)：', class: 'w-max text-base' %>
-          <%= f.file_field :picture, class: 'border-2 p-2 w-full' %>
-        </div>
-        <div class="form-group text-xl mb-5">
-          <%= f.button '送出祝福', class: 'w-max mr-3 p-2 bg-gray-700 text-white border border-double' %>
-        </div>
-      <% end %>
+      <div class="max-w-md mx-auto bg-red-50 p-5 border border-gray-400">
+        <%= form_for @comment, html: { class: 'max-w-md mx-auto' } do |f| %>
+          <div class="form-group text-xl mb-5">
+            <%= f.label :phone_number, '手機號碼：', class: 'w-max text-base' %>
+            <%= f.text_field :phone_number, placeholder: 'ex: 0952013149', class: 'border-2 p-2 w-full' %>
+          </div>
+          <div class="form-group text-xl mb-5">
+            <%= f.label :name, '姓名：', class: 'w-max text-base' %>
+            <%= f.text_field :name, placeholder: 'ex: 蠟筆小新', class: 'border-2 p-2 w-full' %>
+          </div>
+          <div class="form-group text-xl mb-5">
+            <%= f.label :message, '祝福內容：', class: 'w-max text-base' %>
+            <%= f.text_area :message, class: 'border-2 p-2 w-full' %>
+          </div>
+          <div class="form-group text-xl mb-5">
+            <%= f.label :picture, '上傳現場照片(檔案大小3MB以內)：', class: 'w-max text-base' %>
+            <%= f.file_field :picture, class: 'bg-white border-2 p-2 w-full' %>
+          </div>
+          <div class="form-group text-xl mb-5 text-center">
+            <%= f.button '送出祝福', class: 'w-max mr-3 p-2 bg-white text-gray-600 border-2 rounded-lg' %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
