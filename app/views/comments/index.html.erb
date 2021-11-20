@@ -48,9 +48,9 @@
           </tr>
         </thead>
         <tbody>
-          <% @comments.each do |comment| %>
+          <% @comments.each_with_index do |comment, index| %>
             <tr>
-              <td><%= link_to comment.id, comment_path(username: @user.username, id: comment.id), class: "font-bold text-blue-600 hover:text-red-400 block w-full h-full" %></td>
+              <td><%= link_to index + 1, comment_path(username: @user.username, id: comment.id), class: "font-bold text-blue-600 hover:text-red-400 block w-full h-full" %></td>
               <td><%= comment.mask(comment.phone_number) %></td>
               <td><%= comment.name %></td>
               <td class="text-left"><%= comment_message(comment) %></td>

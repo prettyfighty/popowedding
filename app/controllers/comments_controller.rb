@@ -54,12 +54,6 @@ class CommentsController < ApplicationController
       if win_number.present?
         @win_comments = @comments.where(phone_number: win_number)
         @mask_phone_number = @win_comments.first.mask(win_number)
-        # @win_name = @comments.where(phone_number: win_number).pluck(:name).uniq
-        # @messages = @comments.where(phone_number: win_number).pluck(:message).uniq
-        # @comment_ids = @comments.where(phone_number: win_number).ids
-        # win_number[4..6] = '*'
-        # @win_number = win_number
-
       end
     end
   end
