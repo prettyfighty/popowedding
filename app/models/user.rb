@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :comments
   before_save :set_filename
 
+  enum tier: { trial: 0, silver: 1, gold: 2, platinum: 3}
+
   scope :with_picture, -> {
     left_joins(:picture_attachment).where.not(active_storage_attachments: {id: nil})
   }

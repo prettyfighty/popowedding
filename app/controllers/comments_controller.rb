@@ -18,6 +18,10 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @user.comments.new(comment_params)
+    if max_comments
+      flash.now[:notice] = '留言數量已達上限'
+      return render :new
+    end
 
     if @comment.save
       redirect_to comment_path(username: @user.username, id: @comment.id)
@@ -70,5 +74,10 @@ class CommentsController < ApplicationController
 
   def filtering_params
     params.slice(:phone_number, :name, :win, :datetime_filter)
+  end
+
+  def max_comments
+    comment_size = @user.comments.size
+    (@user.trial? && comment_size > 10) || (@user.silver? && comment_size > 60) || (@user.gold? && comment_size > 120) || (@user.platinum? && comment_size > 200)
   end
 end
