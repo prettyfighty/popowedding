@@ -1,0 +1,15 @@
+.btn-dark {
+  @apply w-max mr-3 p-2 bg-gray-600 text-white hover:bg-gray-700 rounded-lg;
+}
+
+.btn-outline-dark {
+  @apply mx-3 p-2 border border-gray-400 text-gray-700 hover:bg-gray-500 hover:text-white rounded-lg;
+}
+
+.btn-outline-orange {
+  @apply mx-3 p-2 border border-yellow-500 text-yellow-600 hover:bg-yellow-500 hover:text-white rounded-lg;
+}
+
+.btn-outline-blue {
+  @apply mx-3 p-2 border border-blue-500 text-blue-600 hover:bg-blue-500 hover:text-white rounded-lg;
+}

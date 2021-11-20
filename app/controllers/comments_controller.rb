@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     set_default_time_interval(1)
     @comments = current_user.comments.with_attached_picture
     @comments = query_by_filter_scope(@comments, filtering_params, :created_at, @default_time_interval)
-    @comments = @comments.page(params[:page]).per(25)
+    @comments = @comments.order(id: :desc).page(params[:page]).per(25)
   end
 
   def new

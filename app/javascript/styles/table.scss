@@ -1,0 +1,45 @@
+.table-compact {
+  @apply w-full text-sm bg-white shadow-md rounded mb-4;
+
+  thead {
+    @apply bg-gray-800 text-center text-white;
+
+    tr {
+      th {
+        @apply p-2 border-r border-gray-300 whitespace-nowrap;
+      }
+
+      th:last-child {
+        @apply border-r-0;
+      }
+    }
+  }
+
+  tbody {
+    @apply text-center;
+
+    tr {
+      @apply hover:bg-blue-50;
+
+      td {
+        @apply p-2 border-b border-r border-gray-400;
+      }
+
+      td:first-child {
+        @apply border-l;
+      }
+    }
+  }
+
+  tbody tr:nth-child(odd) {
+    @apply bg-gray-50 hover:bg-blue-50;
+  }
+
+  tbody tr:nth-child(even) {
+    @apply bg-gray-200 hover:bg-blue-50;
+  }
+
+  .btn {
+    @apply inline-block text-sm px-1 py-0.5 rounded-none;
+  }
+}

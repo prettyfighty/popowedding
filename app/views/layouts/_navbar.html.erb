@@ -6,9 +6,9 @@
     </span>
   </div>
   <div>
-      <%= link_to '編輯新人資料', edit_user_path(current_user.username), class:"mx-3 p-2 border border-gray-400 text-gray-700 rounded-lg" %>
-      <%= link_to '祝福列表', comments_path(current_user.username), class:"mx-3 p-2 border border-gray-400 text-gray-700 rounded-lg" %>
-      <%= link_to '登出', sign_out_sessions_path,method: "delete", class: "mx-3 p-2 border border-gray-400 text-gray-700 rounded-lg" %>
+      <%= link_to '編輯新人資料', edit_user_path(current_user.username), class:"btn-outline-dark" %>
+      <%= link_to '祝福列表', comments_path(current_user.username), class:"btn-outline-dark" %>
+      <%= link_to '登出', sign_out_sessions_path,method: "delete", class: "btn-outline-dark" %>
   </div>
   <% end %>
 </nav>

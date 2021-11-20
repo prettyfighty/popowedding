@@ -25,9 +25,9 @@
 
 
       <div>
-        <%= link_to '回上頁繼續填寫', new_comment_path(username: @user.username), class: "w-max mr-3 p-2 bg-gray-700 text-white rounded-lg" %>
+        <%= link_to '回上頁繼續填寫', new_comment_path(username: @user.username), class: "btn-dark" %>
         <% if current_user %>
-          <%= link_to '返回您的祝福列表', comments_path(username: current_user.username), class: "mx-3 p-2 border border-gray-400 text-gray-700 rounded-lg" %>
+          <%= link_to '返回您的祝福列表', comments_path(username: current_user.username), class: "btn-outline-dark" %>
         <% end %>
       </div>
     </div>

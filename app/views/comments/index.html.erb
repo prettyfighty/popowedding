@@ -1,70 +1,67 @@
 <div class="container mx-auto">
-  <%= render 'layouts/navbar' %>
-  <h1 class="mb-3 text-center fw-bold">祝福留言列表</h1>
-  <%= link_to '新增祝福', new_comment_path(username: @user.username) %>
-  <br>
-  <%= link_to '抽獎去', lottery_comments_path(username: current_user.username) %>
-
-  <div>
-    <%= form_tag(comments_path(username: @user.username), method: :get, class: 'form-inline') do %>
-      <div class="form-group">
-        <%= text_field_tag :phone_number, params[:phone_number], class: 'form-control', placeholder: '手機號碼(抽獎用)' %>
-      </div>
-
-      <div class="form-group">
-        <%= text_field_tag :name, params[:name], class: 'form-control', placeholder: '姓名' %>
-      </div>
-
-      <div class="form-group">
-        <%= datetime_field :datetime_filter, :start_at,
-                           value: params[:datetime_filter]&.values_at(:start_at) || @default_time_interval[:start_at],
-                           class: 'form-control', placeholder: '提单起始日期' %>
-      </div>
-
-      <div class="form-group">
-        <%= datetime_field :datetime_filter, :end_at,
-                           value: params[:datetime_filter]&.values_at(:end_at) || @default_time_interval[:end_at],
-                           class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= select_tag :win,
-                        options_for_select([['是', true], ['否 ', false]], params[:win]),
-                        class: 'form-control', prompt: '是否中獎' %>
-      </div>
-
-      <%= submit_tag '搜尋', class: 'btn btn-primary' %>
-    <% end %>
-  </div>
-
-
-
-  <table class="table table-hover text-center">
-    <thead>
-      <tr>
-        <th>編號</th>
-        <th>手機</th>
-        <th>姓名</th>
-        <th>祝福留言</th>
-        <th>照片</th>
-        <th>建立時間</th>
-        <th>是否中獎</th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @comments.each do |comment| %>
-        <tr>
-          <td><%= link_to comment.id, comment_path(username: @user.username, id: comment.id), class: "text-decoration-none text-info fw-bold" %></td>
-          <td><%= comment.mask(comment.phone_number) %></td>
-          <td><%= comment.name %></td>
-          <td><%= comment.message %></td>
-          <td><%= image_tag(comment.picture, width: 100) if comment.picture.attached? %></td>
-          <td><%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-          <td><%= t("view.common.#{comment.win}") %></td>
-          <td><%= link_to '刪除', comment_path(username: @user.username, id: comment.id), method: 'delete', data: { confirm: '確定刪除該筆祝福留言?' }, class: "btn btn-outline-danger" %></td>
-        </tr>
+  <div class="flex-wrap mt-6 mx-8">
+    <%= render 'layouts/navbar' %>
+    <div class="flex justify-center bg-blue-50 mt-8 mb-4 p-3 border border-gray-300 max-w-md mx-auto lg:max-w-full">
+      <%= form_tag(comments_path(username: @user.username), method: :get, class: 'w-full lg:w-max lg:mx-auto lg:max-w-full lg:flex items-center') do %>
+        <div class="form-group">
+          <%= text_field_tag :phone_number, params[:phone_number], class: 'border m-2 p-2 w-11/12', placeholder: '手機號碼' %>
+        </div>
+        <div class="form-group">
+          <%= text_field_tag :name, params[:name], class: 'border m-2 p-2 w-11/12', placeholder: '姓名' %>
+        </div>
+        <div class="form-group">
+          <%= datetime_field :datetime_filter, :start_at,
+                            value: params[:datetime_filter]&.values_at(:start_at) || @default_time_interval[:start_at],
+                            class: 'border m-2 p-2 w-11/12', placeholder: '提单起始日期' %>
+        </div>
+        <div class="form-group">
+          <%= datetime_field :datetime_filter, :end_at,
+                            value: params[:datetime_filter]&.values_at(:end_at) || @default_time_interval[:end_at],
+                            class: 'border m-2 p-2 w-11/12' %>
+        </div>
+        <div class="form-group">
+          <%= select_tag :win,
+                          options_for_select([['是', true], ['否 ', false]], params[:win]),
+                          class: 'border m-2 p-2 w-11/12 bg-white', prompt: '是否中獎' %>
+        </div>
+        <div class="form-group">
+          <%= submit_tag '搜尋', class: 'cursor-pointer m-2 p-2 bg-gray-600 text-white hover:bg-gray-700 rounded-lg w-11/12' %>
+        </div>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+    <div class="mb-5">
+      <%= link_to '新增祝福', new_comment_path(username: @user.username), class: 'btn-outline-blue' %>
+      <%= link_to '抽獎去', lottery_comments_path(username: current_user.username), class: 'btn-outline-orange' %>
+    </div>
+    <div class="">
+      <table class="table-compact">
+        <thead>
+          <tr>
+            <th>編號</th>
+            <th>手機</th>
+            <th>姓名</th>
+            <th>祝福留言(前20字)</th>
+            <th>照片</th>
+            <th>建立時間</th>
+            <th>是否中獎</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @comments.each do |comment| %>
+            <tr>
+              <td><%= link_to comment.id, comment_path(username: @user.username, id: comment.id), class: "font-bold text-blue-600 hover:text-red-400 block w-full h-full" %></td>
+              <td><%= comment.mask(comment.phone_number) %></td>
+              <td><%= comment.name %></td>
+              <td class="text-left"><%= comment_message(comment) %></td>
+              <td class="w-40"><%= image_tag(comment.picture, class: 'w-full') if comment.picture.attached? %></td>
+              <td><%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+              <td><%= t("view.common.#{comment.win}") %></td>
+              <td><%= link_to '刪除', comment_path(username: @user.username, id: comment.id), method: 'delete', data: { confirm: '確定刪除該筆祝福留言?' }, class: "w-max p-2 mx-auto bg-red-600 text-white hover:bg-red-700 block rounded-lg" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
