@@ -1,25 +1,35 @@
 <div class="container mx-auto">
+  <div class="flex-wrap mt-16 mx-8">
+    <h1 class="mt-16 mb-10 text-center text-3xl font-black text-gray-500">您的祝福</h1>
+    <div class="pb-10 lg:pb-8 text-center">
+      <div class="max-w-md mx-auto mb-10">
+        <%= image_tag(@user.picture, class: 'w-full') if @user.picture.attached? %>
+      </div>
 
-  <div><%= image_tag(@user.picture, width: 300) if @user.picture.attached? %></div>
+      <div class="mb-2 text-base">您的手機號：</div>
+      <div class="mb-10"><%= @comment.phone_number %></div>
 
-  <div>您的手機號：</div>
-  <div><%= @comment.phone_number %></div>
+      <div class="mb-2 text-base">您的姓名：</div>
+      <div class="mb-10"><%= @comment.name %></div>
 
-  <div>您的姓名：</div>
-  <div><%= @comment.name %></div>
+      <div class="mb-2 text-base">您的祝福：</div>
+      <div class="border border-2 my-2 p-3 mb-10">
+        <%= simple_format(@comment.message) %>
+      </div>
 
-  <div>您的祝福：</div>
-  <div class="border border-2 my-3 p-3">
-    <%= simple_format(@comment.message) %>
-  </div>
+      <div class="mb-2 text-base">您上傳的照片：</div>
+      <div class="max-w-md mx-auto mb-10">
+        <%= image_tag(@comment.picture, class: 'w-full') if @comment.picture.attached? %>
+      </div>
 
-  <div>您上傳的照片</div>
-  <div><%= image_tag(@comment.picture, width: 300) if @comment.picture.attached? %></div>
+      
 
-  <div>
-    <%= link_to '回上頁繼續填寫', new_comment_path(username: @user.username), class: "btn btn-outline-success" %>
-    <% if current_user %>
-      <%= link_to '返回您的祝福列表', comments_path(username: current_user.username), class: "btn btn-outline-danger" %>
-    <% end %>
+      <div>
+        <%= link_to '回上頁繼續填寫', new_comment_path(username: @user.username), class: "w-max mr-3 p-2 bg-gray-700 text-white border border-double" %>
+        <% if current_user %>
+          <%= link_to '返回您的祝福列表', comments_path(username: current_user.username), class: "mx-3 p-2 border border-gray-400 text-gray-700" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

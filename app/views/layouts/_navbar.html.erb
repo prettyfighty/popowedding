@@ -2,7 +2,7 @@
   <% if user_signed_in? %>
   <div class="mb-4 md:mb-0">
     <span class="font-medium text-xl">
-      <%= "Hello, #{current_user.bride} & #{current_user.bridegroom}" %>
+      <%= "Hello, #{current_user&.bride} & #{current_user&.bridegroom}" %>
     </span>
   </div>
   <div>

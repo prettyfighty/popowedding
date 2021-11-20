@@ -1,4 +1,4 @@
-<div class="container mx-auto md:container md:mx-auto">
+<div class="container mx-auto">
   <div class="flex-wrap mt-6 mx-8">
     <%= render 'layouts/navbar' %>
     <h1 class="mt-16 mb-10 text-center text-3xl font-black text-gray-500">編輯新人資料</h1>
@@ -14,22 +14,22 @@
         </ul>
       </div>
     <% end %>
-    <div class="pb-10 lg:pb-8 ">
+    <div class="pb-10 lg:pb-8">
       <div class="max-w-md mx-auto mb-5">
         <%= image_tag(@user.picture, class: 'w-full') if @user.picture.attached? %>
       </div>
       <%= form_for @user, url: user_path(@user.username), html: { class: 'max-w-md mx-auto' } do |f| %>
         <div class="form-group text-xl mb-5">
-          <div><%= f.label :picture, '留言顯示照片：', class: 'w-max' %></div>
+          <div><%= f.label :picture, '留言顯示照片：', class: 'w-max text-base' %></div>
           <div><%= f.file_field :picture, class: 'border-2 p-2 w-full' %></div>
         </div>
         <div class="form-group text-xl mb-5">
-          <div><%= f.label :bride, '新娘：', class: 'w-max' %></div>
-          <div><%= f.text_field :bride, placeholder: '小白', class: 'border-2 p-2 w-full' %></div>
+          <div><%= f.label :bride, '新娘：', class: 'w-max text-base' %></div>
+          <div><%= f.text_field :bride, placeholder: 'ex: 小白', class: 'border-2 p-2 w-full' %></div>
         </div>
         <div class="form-group text-xl mb-5">
-          <div><%= f.label :bridegroom, '新郎：', class: 'w-max' %></div>
-          <div><%= f.text_field :bridegroom, placeholder: '蠟筆小新', class: 'border-2 p-2 w-full' %></div>
+          <div><%= f.label :bridegroom, '新郎：', class: 'w-max text-base' %></div>
+          <div><%= f.text_field :bridegroom, placeholder: 'ex: 蠟筆小新', class: 'border-2 p-2 w-full' %></div>
         </div>
         <%= f.button '更新', class: 'w-max mr-3 p-2 bg-gray-700 text-white border border-double' %>
       <% end %>

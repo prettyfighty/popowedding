@@ -1,41 +1,55 @@
-<div class="container mx-auto blessing-container blessing-new board_color_2 message_board_type_0">
-  <div class="container-background background-color-1">
+<div class="container mx-auto">
+  <div class="flex-wrap mt-16 mx-8">
+    <h1 class="mt-16 mb-10 text-center text-3xl font-black text-gray-500">祝福留言</h1>
     <% if @comment.errors.any? %>
-      <ul>
-        <% @comment.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+      <div class="max-w-md mx-auto border-gray-300 border bg-blue-50 mb-8 -mt-6">
+        <ul class="px-4 py-2">
+          <% @comment.errors.full_messages.each do |msg| %>
+            <li class="text-gray-400 font-semibold">
+              <span class="font-black text-2xl">．</span>
+              <%= "#{msg.split(' ')[0]}：#{msg.split(' ')[1]}" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-    <div class="blessing-title border-color-2">
-      <div class="title-image"><img class="border-color-2" src=""></div>
-
-      <div><%= image_tag(@user.picture, width: 300) if @user.picture.attached? %></div>
-
-      <h3>歡迎參加 <span><%= "#{@user&.bride}＆#{@user.bridegroom}" %></span> 的婚禮，快來寫下您想對我們說的話吧！</h3>
-      <p>請在下方填上您的手機、姓名以及想要祝福的話，我們稍後會進行抽獎哦～</p>
+    <div class="pb-10 lg:pb-8">
+      <div class="max-w-md mx-auto mb-5">
+        <%= image_tag(@user.picture, class: 'w-full') if @user.picture.attached? %>
+      </div>
+      <div class="max-w-md mx-auto mb-5">
+        <h3 class="mb-2">
+          歡迎參加 <span><%= "#{@user&.bride}＆#{@user.bridegroom}" %></span> 的婚禮，
+          <br>
+          快來寫下您想對我們說的話吧！
+        </h3>
+        <p>
+          請在下方填上您的手機、姓名以及祝福，
+          <br>
+          我們稍後會進行抽獎哦～
+        </p>
+      </div>
+      <%= form_for @comment, html: { class: 'max-w-md mx-auto' } do |f| %>
+        <div class="form-group text-xl mb-5">
+          <%= f.label :phone_number, '手機號碼：', class: 'w-max text-base' %>
+          <%= f.text_field :phone_number, placeholder: 'ex: 0952013149', class: 'border-2 p-2 w-full' %>
+        </div>
+        <div class="form-group text-xl mb-5">
+          <%= f.label :name, '姓名：', class: 'w-max text-base' %>
+          <%= f.text_field :name, placeholder: 'ex: 蠟筆小新', class: 'border-2 p-2 w-full' %>
+        </div>
+        <div class="form-group text-xl mb-5">
+          <%= f.label :message, '祝福內容：', class: 'w-max text-base' %>
+          <%= f.text_area :message, class: 'border-2 p-2 w-full' %>
+        </div>
+        <div class="form-group text-xl mb-5">
+          <%= f.label :picture, '上傳現場照片(檔案大小3MB以內)：', class: 'w-max text-base' %>
+          <%= f.file_field :picture, class: 'border-2 p-2 w-full' %>
+        </div>
+        <div class="form-group text-xl mb-5">
+          <%= f.button '送出祝福', class: 'w-max mr-3 p-2 bg-gray-700 text-white border border-double' %>
+        </div>
+      <% end %>
     </div>
-
-    <%= form_for @comment do |f| %>
-      <div class="form-group">
-        <%= f.label :phone_number, '手機號碼(抽獎用)' %>
-        <%= f.text_field :phone_number, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :name, '姓名：' %>
-        <%= f.text_field :name, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :message, '祝福內容：' %>
-        <%= f.text_area :message, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :picture, '上傳現場照片：' %>
-        <%= f.file_field :picture, class: 'form-control' %>
-      </div>
-      <div class="form-group">
-        <%= f.submit '送出祝福', class: 'btn' %>
-      </div>
-    <% end %>
   </div>
 </div>
