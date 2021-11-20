@@ -8,6 +8,8 @@ class User < ApplicationRecord
     left_joins(:picture_attachment).where.not(active_storage_attachments: {id: nil})
   }
 
+  validates :picture, size: { less_than: 15.megabytes, message: '檔案大小不得超過15MB' },
+            content_type: ['image/png', 'image/jpg', 'image/jpeg', 'image/webp']
   validates :bride, presence: true, length: { in: 1..10, message: '長度為1-10位'}
   validates :bridegroom, presence: true, length: { in: 1..10, message: '長度為1-10位'}
   validates :username, presence: true, uniqueness: { case_sensitive: true, message: '該帳號已有人使用' },

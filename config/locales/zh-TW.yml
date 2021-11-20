@@ -42,6 +42,8 @@ zh-TW:
               blank: 不可空白
             password_confirmation:
               confirmation: 與密碼不同
+            picture:
+              content_type_invalid: 檔案格式錯誤，只能上傳圖檔
 
         comment:
           attributes:
@@ -51,5 +53,5 @@ zh-TW:
               blank: 加減留個嘛
             picture:
               blank: 不能沒有
-              content_type_invalid: 檔案格式錯誤，只能上傳 png, jpg, jpeg
+              content_type_invalid: 檔案格式錯誤，只能上傳圖檔
 
