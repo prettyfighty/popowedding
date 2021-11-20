@@ -75,6 +75,6 @@ class CommentsController < ApplicationController
 
   def max_comments
     comment_size = @user.comments.size
-    (@user.trial? && comment_size > 10) || (@user.silver? && comment_size > 60) || (@user.gold? && comment_size > 120) || (@user.platinum? && comment_size > 200)
+    (@user.trial? && comment_size > 10) || (@user.silver? && comment_size > 60) || (@user.gold? && comment_size > 120) || (@user.platinum? && comment_size > 400)
   end
 end
