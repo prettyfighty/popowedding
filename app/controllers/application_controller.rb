@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   helper_method :current_user, :user_signed_in?
+  before_action do
+    ActiveStorage::Current.host = request.base_url if Rails.env.development?
+  end
 
   private
   def record_not_found

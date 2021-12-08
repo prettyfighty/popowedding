@@ -12,7 +12,7 @@
         <div class="form-group">
           <%= datetime_field :datetime_filter, :start_at,
                             value: params[:datetime_filter]&.values_at(:start_at) || @default_time_interval[:start_at],
-                            class: 'border m-2 p-2 w-11/12', placeholder: '提单起始日期' %>
+                            class: 'border m-2 p-2 w-11/12' %>
         </div>
         <div class="form-group">
           <%= datetime_field :datetime_filter, :end_at,
@@ -32,6 +32,7 @@
     <div class="mb-5">
       <%= link_to '新增祝福', new_comment_path(username: @user.username), class: 'btn-outline-blue' %>
       <%= link_to '抽獎去', lottery_comments_path(username: current_user.username), class: 'btn-outline-orange' %>
+      <%= link_to '匯出資料', comments_path(format: :csv, username: @user.username, phone_number: params[:phone_number], name: params[:name], win: params[:win], datetime_filter: { start_at: params.dig(:datetime_filter, :start_at) || @default_time_interval[:start_at], end_at: params.dig(:datetime_filter, :end_at) || @default_time_interval[:end_at] }), class: 'btn-outline-dark' %>
     </div>
     <div class="">
       <table class="table-compact">

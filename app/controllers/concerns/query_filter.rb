@@ -15,20 +15,11 @@ module QueryFilter
         value.each do |filter_key, filter_value|
           query = query.public_send("filter_by_#{filter_field}_#{filter_key}", filter_value) if filter_value.present? && filter_key != 'type'
         end
-      elsif key == 'win_line' && value.present?
-        value = ([:minimum, :maximum].zip(value.split('..'))).to_h
-        value.each do |filter_key, filter_value|
-          query = query.public_send("filter_by_#{filter_key}_#{key}", filter_value) if filter_value != '0'
-        end
       else
         query = query.public_send("filter_by_#{key}", value) if value.present?
       end
     end
     query
-  end
-
-  def date_range_exist?(*date_filters)
-    date_filters.all? { |key| params[key].present? }
   end
 
   def set_default_time_interval(days = 3)
